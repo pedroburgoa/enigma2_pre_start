@@ -1,5 +1,11 @@
 # Changelog
 
+## [5.0] - 26/12/2020
+
+- Incluido bouquet enigma2 para Tdtchannels.tv - https://github.com/LaQuay/TDTChannels
+- Opción de no borrar los favoritos que deseamos usando el fichero /etc/enigma2/save_bouquets
+- Añadidas dependencias de bash y curl en la instalación
+
 ## [4.10] - 18/12/2020
 
 - Corrección de errores
