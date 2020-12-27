@@ -14,11 +14,18 @@ Podemos elegir qué lista de canales instalar creando este archivo de configurac
 
 Ejemplo: `LISTACANALES=astra`
 
-También podemos elegir si no queremos que nos meta algún bouquet en concreto, para ello hay que crear el fichero /etc/enigma2/fav_bouquets y dentro meter en líneas separadas los bouquets que NO queremos que se nos carguen en el deco 
+También podemos elegir si no queremos que nos meta algún bouquet en concreto, para ello hay que crear el fichero /etc/enigma2/fav_bouquets y dentro meter en líneas separadas los bouquets que NO queremos que se nos carguen en el deco.
 
 Ejemplo:
 
 `movistariplus
 canalesdeportes`
 
-Más documentación sobre el script en: https://jungle-team.com/junglescript-lista-canales-y-picon-enigma2-movistar/
+Además ahora podemos elegir qué bouquets favoritos queremos que se mantengan aunque haya actualizaciones, para ellos hay que crear el fichero /etc/enigma2/save_bouquets y dentro meter en líneas separadas los bouquets que queremos que se salven.
+
+Ejemplo:
+
+`deportes
+laliga`
+
+Más documentación sobre el script en: https://jungle-team.com/junglescript-5-0-auto-instalador-lista-canales-y-picon-enigma2/
