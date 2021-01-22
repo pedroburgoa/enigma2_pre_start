@@ -1,5 +1,9 @@
 # Changelog
 
+## [5.1] - 22/01/2021
+
+- Incluído bouquet enigma2 para PlutoTV - https://pluto.tv
+
 ## [5.0] - 26/12/2020
 
 - Incluido bouquet enigma2 para Tdtchannels.tv - https://github.com/LaQuay/TDTChannels
