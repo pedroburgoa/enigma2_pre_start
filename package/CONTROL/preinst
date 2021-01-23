@@ -1,0 +1,23 @@
+#!/bin/sh 
+
+URL=http://tropical.jungle-team.online/utilidades
+RSYNC_FILE=/usr/bin/rsync
+DIR_TMP=/tmp
+if [ ! -f $RSYNC_FILE ];
+then
+    INSTALL_RSYNC=$(opkg list | grep "rsync -" | wc -l)
+    if [ "$INSTALL_RSYNC" -eq 0 ];
+    then
+        ES_ARM=$(uname -a | grep arm | wc -l)
+        if [ "$ES_ARM" -eq 1 ];
+        then
+            IPK=enigma2_plugin_systemplugins_rsync_3.ipk
+        else
+            IPK=rsync_3.0.9-r0_mips32el.ipk
+        fi
+        wget $URL/$IPK -P $DIR_TMP
+        opkg install $DIR_TMP/$IPK
+        rm -f $DIR_TMP/$IPK
+    fi   
+fi
+
