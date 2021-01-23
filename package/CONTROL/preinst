@@ -5,6 +5,7 @@ RSYNC_FILE=/usr/bin/rsync
 DIR_TMP=/tmp
 if [ ! -f $RSYNC_FILE ];
 then
+    opkg update
     INSTALL_RSYNC=$(opkg list | grep "rsync -" | wc -l)
     if [ "$INSTALL_RSYNC" -eq 0 ];
     then
@@ -18,6 +19,8 @@ then
         wget $URL/$IPK -P $DIR_TMP
         opkg install $DIR_TMP/$IPK
         rm -f $DIR_TMP/$IPK
+    else
+	opkg install rsync
     fi   
 fi
 

@@ -1,6 +1,6 @@
 Package: enigma2-plugin-extensions-junglescript
 Version: 5.1
 Architecture: all
-Depends: bash,curl,rsync
+Depends: bash,curl
 Maintainer: jungle-team
 Description: JungleScript for enigma2
