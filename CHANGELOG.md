@@ -1,5 +1,14 @@
 # Changelog
 
+## [5.3] - 29/01/2021
+
+- Arreglado bug con el fichero fav_bouquets
+
+## [5.2] - 28/01/2021
+
+- Añadida opción para cargar picons en color (TIPOPICON=movistar-color)
+- Limpieza de archivos de PLUTOTV o TDTCHANNELS si están activados y después se desactivan
+
 ## [5.1] - 22/01/2021
 
 - Incluído bouquet enigma2 para PlutoTV - https://pluto.tv
