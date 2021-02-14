@@ -52,6 +52,9 @@ Ejemplo:
 ```
 deportes
 laliga
+mibouquet
+motos
+...
 ```
 
 Más documentación sobre el script en: https://jungle-team.com/junglescript-5-0-auto-instalador-lista-canales-y-picon-enigma2/

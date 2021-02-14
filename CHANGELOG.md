@@ -1,5 +1,14 @@
 # Changelog
 
+## [5.5] - 14/02/2021
+
+- Añadidas listas de hispasat para que se actualicen a través del script con el parámetro LISTA_CANALES (astra-hispasat, astra-hotbird-hispasat)
+
+## [5.4] - 02/02/2021
+
+- Bouquets incluídos de save_bouquets, bouquets IPTV y TDT ahora aparecerán al principio de la lista
+- Arreglado bug con el fichero save_bouquets
+
 ## [5.3] - 29/01/2021
 
 - Arreglado bug con el fichero fav_bouquets

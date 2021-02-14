@@ -1,10 +1,10 @@
 #!/bin/bash
 # Provides: jungle-team
 # Description: JungleScript para actualizaciones de lista de canales y de picons del equipo jungle-team
-# Version: 5.3
-# Date: 29/01/2021 
+# Version: 5.5
+# Date: 14/02/2021 
 
-VERSION=5.3
+VERSION=5.5
 LOGFILE=/var/log/enigma2_pre_start.log
 URL_TROPICAL=http://tropical.jungle-team.online
 exec 1> $LOGFILE 2>&1
@@ -156,7 +156,8 @@ salvar_bouquet(){
 		HAY_PARA_SALVAR=$(cat ${DESTINO}/save_bouquets | wc -l)
 		if [ "$HAY_PARA_SALVAR" -gt 0 ];
 		then
-			BOUQUET_NAME_SINPUNTOS=$(echo ${BOUQUET} | cut -d'/' -f4 | cut -d '.' -f1)
+			NUM_PUNTOS=$(echo ${BOUQUET} | grep -o "\." | wc -l)
+			BOUQUET_NAME_SINPUNTOS=$(basename ${BOUQUET} | cut -d '.' -f${NUM_PUNTOS})
 			SALVAR_BOUQUET=$(grep ${BOUQUET_NAME_SINPUNTOS} ${DESTINO}/save_bouquets | wc -l)
 		fi
 	fi
@@ -183,6 +184,7 @@ diferencias_canales() {
 	rsync -aiv $DIR_TMP/$CARPETA/* $DESTINO --exclude-from=$DIR_TMP/excludes.txt --log-file=$DIR_TMP/$LOG_RSYNC_CANALES
 	FICH_SAT=satellites.xml
 	RUTA_SAT=/etc/tuxbox
+	LINEA=3
 	rsync -aiv $DIR_TMP/$CARPETA/$FICH_SAT $RUTA_SAT/$FICH_SAT --log-file=$DIR_TMP/$LOG_RSYNC_CANALES
 	if [ -f $DIR_TMP/$EXCLUDE_FAV ];
 	then
@@ -193,7 +195,8 @@ diferencias_canales() {
 			then
 				if [ "${i}" != "bouquets.tv" ];
 				then
-					echo '#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "'${i}'" ORDER BY bouquet' >> $DESTINO/bouquets.tv
+					sed -i ${LINEA}'a\#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "'${i}'" ORDER BY bouquet' $DESTINO/bouquets.tv
+					let LINEA=LINEA+1
 				fi
 			else
 					echo "Existe favorito ${i} ya previamente en bouquets.tv"
@@ -530,6 +533,18 @@ actualizar_listacanales(){
 		CARPETA=Canales-enigma2-main/Jungle-Astra-19.2-comunitarias/etc/enigma2
 		ZIP=Jungle-Astra-19.2-comunitarias.zip
 		;;
+	'astra-hotbird-hispasat')
+		URL=$URL_TROPICAL/oasis/lista_canales/Jungle-Astra19.2-Hotbird13-Hispasat30.zip
+		URL_ACTUALIZACION=$URL_TROPICAL/oasis/lista_canales/astra-hotbird-hispasat/etc/enigma2/actualizacion
+		CARPETA=Canales-enigma2-main/Jungle-Astra19.2-Hotbird13-Hispasat30/etc/enigma2
+		ZIP=Jungle-Astra19.2-Hotbird13-Hispasat30.zip
+		;;
+	'astra-hispasat')
+		URL=$URL_TROPICAL/oasis/lista_canales/Jungle-Astra19.2-Hispasat30.zip
+		URL_ACTUALIZACION=$URL_TROPICAL/oasis/lista_canales/astra-hispasat/etc/enigma2/actualizacion
+		CARPETA=Canales-enigma2-main/Jungle-Astra19.2-Hispasat30/etc/enigma2
+		ZIP=Jungle-Astra19.2-Hispasat30.zip
+		;;
 	'*')
 		URL=$URL_TROPICAL/oasis/lista_canales/Jungle-Astra-19.2.zip
 		URL_ACTUALIZACION=$URL_TROPICAL/oasis/lista_canales/astra/etc/enigma2/actualizacion
@@ -709,8 +724,8 @@ actualizar_tdtchannels() {
 		EXISTE_TDTCHANNELS=$(grep -i "${FICHERO_TDTCHANNELS}" ${DEST_TDTCHANNELS}/bouquets.tv | wc -l)
 		if [ "$EXISTE_TDTCHANNELS" -eq 0 ];
 		then
-			echo '#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "'${FICHERO_TDTCHANNELS}'" ORDER BY bouquet' >> $DEST_TDTCHANNELS/bouquets.tv
-			echo ""
+			sed -i ${LINEA}'a\#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "'${FICHERO_TDTCHANNELS}'" ORDER BY bouquet' $DESTINO/bouquets.tv
+			let LINEA=LINEA+1
 		else
 			echo "Existe favorito ${FICHERO_TDTCHANNELS} ya previamente en bouquets.tv"
 		fi
@@ -733,8 +748,8 @@ actualizar_plutotv() {
 		EXISTE_PLUTOTV=$(grep -i "${FICHERO_PLUTOTV}" ${DEST_PLUTOTV}/bouquets.tv | wc -l)
 		if [ "$EXISTE_PLUTOTV" -eq 0 ];
 		then
-			echo '#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "'${FICHERO_PLUTOTV}'" ORDER BY bouquet' >> $DEST_PLUTOTV/bouquets.tv
-			echo ""
+			sed -i ${LINEA}'a\#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "'${FICHERO_PLUTOTV}'" ORDER BY bouquet' $DESTINO/bouquets.tv
+			let LINEA=LINEA+1
 		else
 			echo "Existe favorito ${FICHERO_PLUTOTV} ya previamente en bouquets.tv"
 		fi
