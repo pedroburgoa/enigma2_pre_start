@@ -20,7 +20,7 @@ TDTCHANNELS=<0 o 1>
 PLUTOTV=<0 o 1>
 ```
 
-LISTACANALES con uno de estos valores (astra, astra-hotbird, astra-comunitaria). 
+LISTACANALES con uno de estos valores (astra, astra-hotbird, astra-comunitaria, astra-hispasat, astra-hotbird-hispasat). 
 PICONS con valor =1 para permitir que se descargue los picons e =0 para que no se los descargue.
 TIPOPICON con uno de estos valores (movistar-original, movistar-lunar, movistar-color)
 TDTCHANNELS con valor =1 para permitir que se descargue el bouquet tdtchannels, y valor =0 para que no se lo descargue.
